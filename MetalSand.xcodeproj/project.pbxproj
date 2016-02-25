@@ -28,7 +28,7 @@
 		0E08CB761C47F1E9005B6CBC /* Particle.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; name = Particle.metal; path = Metal/Shader/Particle.metal; sourceTree = "<group>"; };
 		0E08CB781C480582005B6CBC /* ParticleRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParticleRender.swift; path = "Metal/Sub Render/ParticleRender.swift"; sourceTree = "<group>"; };
 		0E7E67991C4BE1E700F9A479 /* QuadRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadRender.swift; path = "Metal/Sub Render/QuadRender.swift"; sourceTree = "<group>"; };
-		0E7E679B1C4BEEC900F9A479 /* VertexColorQuad.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = VertexColorQuad.metal; sourceTree = "<group>"; };
+		0E7E679B1C4BEEC900F9A479 /* VertexColorQuad.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; name = VertexColorQuad.metal; path = Metal/Shader/VertexColorQuad.metal; sourceTree = "<group>"; };
 		0EC1CA2A1C32FB22003EE5B2 /* MetalSand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalSand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC1CA2D1C32FB22003EE5B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC1CA2F1C32FB22003EE5B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
