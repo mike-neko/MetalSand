@@ -15,10 +15,6 @@ struct ParticleData {
     var acc: float3
 }
 
-struct ParticleParameter {
-    var count: float4
-}
-
 struct ParticleUniforms {
     var position: float4
     var color: float4
@@ -41,9 +37,8 @@ class ParticleRender: RenderProtocol, ComputeProtocol {
     
     enum ComputeBuffer: Int {
         case Particle = 0
-        case Parameter = 1
-        case Laminate = 2
-        case Output = 3
+        case Laminate = 1
+        case Output = 2
         func index() -> Int { return self.rawValue }
     }
 
@@ -64,7 +59,6 @@ class ParticleRender: RenderProtocol, ComputeProtocol {
     private var threadgroupSize: MTLSize! = nil
     private var threadgroupCount: MTLSize! = nil
     
-    private var parameter: ParticleParameter! = nil
     private var parameterBuffer: MTLBuffer! = nil
     
     private var laminateBuffer: MTLBuffer! = nil
@@ -133,10 +127,6 @@ class ParticleRender: RenderProtocol, ComputeProtocol {
         threadgroupSize = MTLSize(width: ParticleRender.Square, height: ParticleRender.Square, depth: 1)
         threadgroupCount = MTLSize(width: 1, height: 1, depth: 1)
         
-        /* parameter */
-        parameterBuffer = device.newBufferWithLength(sizeof(ParticleParameter), options: .CPUCacheModeDefaultCache)
-        parameter = ParticleParameter(count: float4())
-
         laminateBuffer = device.newBufferWithLength(sizeof(LaminateBuffer) * maxCount, options: .CPUCacheModeDefaultCache)
         let p_lam = UnsafeMutablePointer<LaminateBuffer>(laminateBuffer.contents())
         for i in 0..<maxCount {
@@ -148,14 +138,11 @@ class ParticleRender: RenderProtocol, ComputeProtocol {
     }
     
     func compute(commandBuffer: MTLCommandBuffer) {
-        let p_param = UnsafeMutablePointer<ParticleParameter>(parameterBuffer.contents())
-        p_param.memory = parameter
-
+ 
         let computeEncoder = commandBuffer.computeCommandEncoder()
         
         computeEncoder.setComputePipelineState(computeState)
         computeEncoder.setBuffer(particleBuffer, offset: 0, atIndex: ComputeBuffer.Particle.index())
-        computeEncoder.setBuffer(parameterBuffer, offset: 0, atIndex: ComputeBuffer.Parameter.index())
         computeEncoder.setBuffer(laminateBuffer, offset: 0, atIndex: ComputeBuffer.Laminate.index())
         computeEncoder.setBuffer(drawBuffers[Render.current.activeBufferNumber], offset: 0, atIndex: ComputeBuffer.Output.index())
         computeEncoder.dispatchThreadgroups(threadgroupSize, threadsPerThreadgroup: threadgroupCount)

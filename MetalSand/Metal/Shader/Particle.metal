@@ -24,10 +24,6 @@ struct ParticleData {
     float3      acc;
 };
 
-struct ParticleParameter {
-    float4      position;
-};
-
 struct LaminateData {
     float       height;
 };
@@ -55,9 +51,8 @@ inline float2 calcAngle(float angle) {
 }
 
 kernel void particleCompute(device ParticleData* in [[ buffer(0) ]],
-                            const device ParticleParameter& param [[ buffer(1) ]],
-                            device LaminateData* laminate [[ buffer(2) ]],
-                            device VertexInOut* out [[ buffer(3) ]],
+                            device LaminateData* laminate [[ buffer(1) ]],
+                            device VertexInOut* out [[ buffer(2) ]],
                             uint2 id [[ thread_position_in_grid ]],
                             uint2 size [[ threads_per_grid ]]) {
     uint pos = id.x + id.y * size.x;
@@ -66,11 +61,10 @@ kernel void particleCompute(device ParticleData* in [[ buffer(0) ]],
     if (data.acc.y > 0) {
         float height = data.position.y + data.acc.y;
         int base = calcPosition(data.position.xz);
-        float base_h  = laminate[base].height;
+        float base_h = laminate[base].height;
         if (height < base_h) {
             data.position.y = height;
         } else {
-            // 付近を探索
             int min_index = 0;
             float a = (rotate(id.y, id.x) % 360) * PI / 180.f;
             float2 xy[13];
@@ -116,9 +110,9 @@ kernel void particleCompute(device ParticleData* in [[ buffer(0) ]],
             min_index = mix((float)min_index, 11.f, not(step(h[11], h[min_index])));
             min_index = mix((float)min_index, 12.f, not(step(h[12], h[min_index])));
             
-            if (h[min_index] <= base_h) {
+            if (min_index == 0) {
                 data.acc.y = 0;
-                laminate[base].height = base_h - 0.0025;
+                laminate[base].height = base_h - 0.002;
             } else {
                 data.position.x += xy[min_index].x;
                 data.position.z += xy[min_index].y;
