@@ -21,7 +21,6 @@
 		0EC1CA4A1C32FD92003EE5B2 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC1CA471C32FD92003EE5B2 /* Matrix.swift */; };
 		0EC1CA4B1C32FD92003EE5B2 /* Quaternion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC1CA481C32FD92003EE5B2 /* Quaternion.swift */; };
 		0EC1CA4E1C33038C003EE5B2 /* Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC1CA4D1C33038C003EE5B2 /* Render.swift */; };
-		0EC1CA581C330EF2003EE5B2 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC1CA571C330EF2003EE5B2 /* Assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +40,6 @@
 		0EC1CA471C32FD92003EE5B2 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix.swift; path = Metal/Common/Matrix.swift; sourceTree = "<group>"; };
 		0EC1CA481C32FD92003EE5B2 /* Quaternion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quaternion.swift; path = Metal/Common/Quaternion.swift; sourceTree = "<group>"; };
 		0EC1CA4D1C33038C003EE5B2 /* Render.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Render.swift; path = Metal/Render.swift; sourceTree = "<group>"; };
-		0EC1CA571C330EF2003EE5B2 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +77,6 @@
 				0EC1CA2D1C32FB22003EE5B2 /* AppDelegate.swift */,
 				0EC1CA2F1C32FB22003EE5B2 /* ViewController.swift */,
 				0EC1CA411C32FC0C003EE5B2 /* Metal */,
-				0EC1CA571C330EF2003EE5B2 /* Assets */,
 				0EC1CA401C32FBD9003EE5B2 /* Supporting Files */,
 				0EC1CA3F1C32FBC2003EE5B2 /* Frameworks */,
 			);
@@ -203,7 +200,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC1CA381C32FB22003EE5B2 /* LaunchScreen.storyboard in Resources */,
-				0EC1CA581C330EF2003EE5B2 /* Assets in Resources */,
 				0EC1CA351C32FB22003EE5B2 /* Assets.xcassets in Resources */,
 				0EC1CA331C32FB22003EE5B2 /* Main.storyboard in Resources */,
 			);
